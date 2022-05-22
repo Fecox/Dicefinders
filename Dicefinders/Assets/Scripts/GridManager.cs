@@ -5,31 +5,39 @@ using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
 {
-    public Tilemap grid;
-    private int minimo;
-    private int maximo;
+    public Tilemap Board;
+    
+    private List<Node> nodes = new List<Node>();
 
-    public void Start()
+    public void Awake()
     {
-        prueba();
+        CreateNodes();
+        // Prueba();
     }
 
-    private void prueba()
+    private void CreateNodes()
     {
-        int count = 0;
-        for(int x = grid.cellBounds.xMin; x < grid.cellBounds.xMax; x++)
+        for(int x = Board.cellBounds.xMin; x < Board.cellBounds.xMax; x++)
         {
-            for(int y = grid.cellBounds.yMin; y < grid.cellBounds.yMax; y++)
+            for(int y = Board.cellBounds.yMin; y < Board.cellBounds.yMax; y++)
             {
-                Vector3Int localPos = new Vector3Int(x, y , (int)grid.transform.position.y);
+                Vector3Int boardPos = new Vector3Int(x, y , (int)Board.transform.position.y);
 
-                if(grid.HasTile(localPos))
+                if(Board.HasTile(boardPos))
                 {
-                    count ++;
+                    Vector3 pos = Board.CellToWorld(boardPos);
+                    Node node = new Node(nodes.Count, pos);
+                    nodes.Add(node);
                 }
             }
         }
+    }
 
-        Debug.Log(count);
+    private void Prueba()
+    {
+        for(int i = 0; i < nodes.Count; i++)
+        {
+            Debug.Log(nodes[i].Index);
+        }
     }
 }
