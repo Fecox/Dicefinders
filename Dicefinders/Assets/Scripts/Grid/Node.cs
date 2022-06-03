@@ -5,14 +5,14 @@ using UnityEngine;
 public class Node
 {
     public int Index { get; }
-    public Vector3 Pos { get; }
+    public Vector3 Position { get; }
 
     public bool IsOccupied { get ; set; }
 
-    public Node(int index, Vector3 pos)
+    public Node(int index, Vector3 position)
     {
         Index = index;
-        Pos = pos;
+        Position = position;
         IsOccupied = false;
     }
 }
