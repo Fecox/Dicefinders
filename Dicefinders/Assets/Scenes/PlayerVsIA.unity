@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b295cfcb2ca0b804c8382c15ab0f8e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabHigLight: {fileID: 2442888646617217078, guid: cee23f6a98eca05449458e7502f35946, type: 3}
+  PrefabHighLight: {fileID: 2442888646617217078, guid: cee23f6a98eca05449458e7502f35946, type: 3}
 --- !u!4 &1645491316
 Transform:
   m_ObjectHideFlags: 0

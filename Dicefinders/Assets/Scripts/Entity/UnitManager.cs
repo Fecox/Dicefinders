@@ -12,6 +12,14 @@ public class UnitManager
         unit.Spawn(prefab, selectedNode);
     }
 
+    public void MakeNextAction()
+    {
+        
+    }
+
+
+
+
     public int GetMovementSteps()
     {
         return unit.MovementSteps;

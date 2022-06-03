@@ -25,4 +25,13 @@ public class FeedBackManager : Singleton<FeedBackManager>
             GameObject highLight = Instantiate(PrefabHighLight, aroundNodes[i].Position, Quaternion.identity, parentHighLight.transform);
         }
     }
+
+    public void Reset()
+    {
+        for (int i = 0; i < parentHighLight.transform.childCount; i++)
+        {
+            Destroy(parentHighLight.transform.GetChild(i).gameObject); 
+        }
+    }
+
 }

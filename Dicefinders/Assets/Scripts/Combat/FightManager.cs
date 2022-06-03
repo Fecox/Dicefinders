@@ -51,12 +51,17 @@ public class FightManager : MonoBehaviour
             // TODO: ver como hacer mejor esto, tambien ver si vamos a poner botones con respecto a atacar y mover
             if (Input.GetMouseButtonDown(0) && playerUnit.GetMovementSteps() > 0)
             {
-                if (playerUnit.IsValidMove())
+                playerUnit.CheckFotNextAction();
+                Debug.Log(" ahora te puedes mover " + playerUnit.GetMovementSteps() + " veces");
+                if (playerUnit.GetMovementSteps() > 0)
                 {
-                    
+                    FeedBackManager.Instance.ShowPossibleMoves(playerUnit); // esto es hot fix, hay que ver de hacerlo con tiles
                 }
             }
-            
+            if (Input.GetKeyDown(KeyCode.D)) // is for debug
+            {   
+                
+            }
         }
     }
 

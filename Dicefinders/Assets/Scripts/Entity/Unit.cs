@@ -46,6 +46,15 @@ public class Unit : MonoBehaviour
         MovementSteps = Random.Range(1, 4);
     }
 
+    public void MakeNextMove(Node selectedNode)
+    {
+        FeedBackManager.Instance.Reset();
+        ChangeCurrentNode(selectedNode);
+        GetAroundNodes();
+        TakeMovementSteps();
+        transform.position = selectedNode.Position;
+    }
+
     private void ChangeCurrentNode(Node node)
     {
         Node = node;
@@ -65,6 +74,11 @@ public class Unit : MonoBehaviour
                 aroundNodes.Add(node);
             }  
         }
+    }
+
+    private void TakeMovementSteps()
+    {
+        MovementSteps--;
     }
 }
 
