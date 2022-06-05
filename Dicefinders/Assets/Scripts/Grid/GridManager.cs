@@ -7,7 +7,7 @@ public class GridManager : Singleton<GridManager>
 {
     public Tilemap Board;
 
-    private const float MAX_DISTANCE = 10.5f;
+    [SerializeField] private const float MAX_DISTANCE = 10.01f;
 
     private int totalRows = 8;
     private int totalColumns;

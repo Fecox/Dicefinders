@@ -94,6 +94,8 @@ public class FightManager : MonoBehaviour
         {
             // TODO: generar botones
             // TODO: generar feedback para darle a entender al jugador que tiene que poner a su personaje
+            // HOTFIX: mas adelante esto deberia de estar en un menu drageable y traer de tus dados guardaods de un scriptable object
+            
         }
         if(state == GameState.IA_SETUP)
         {
