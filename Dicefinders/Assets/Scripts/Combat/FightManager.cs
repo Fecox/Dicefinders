@@ -43,7 +43,7 @@ public class FightManager : MonoBehaviour
         }
         if(state == GameState.IA_SETUP)
         {
-            iAUnit.AddUnit(unitPrefabs[0], GridManager.Instance.GetRandomEnemySpawnNode());
+            iAUnit.AddUnit(unitPrefabs[Random.Range(0, unitPrefabs.Count)], GridManager.Instance.GetRandomEnemySpawnNode());
             ChangeState(GameState.PLAYER_TURN);
         }
         if (state == GameState.PLAYER_TURN)
@@ -95,7 +95,7 @@ public class FightManager : MonoBehaviour
             // TODO: generar botones
             // TODO: generar feedback para darle a entender al jugador que tiene que poner a su personaje
             // HOTFIX: mas adelante esto deberia de estar en un menu drageable y traer de tus dados guardaods de un scriptable object
-            
+            function();
         }
         if(state == GameState.IA_SETUP)
         {
@@ -110,6 +110,14 @@ public class FightManager : MonoBehaviour
             Debug.Log("te puedes mover " + playerUnit.GetMovementSteps() + " veces"); // TODO: mostrar cantidad de movijmientos totales y los que quedan en pantalla
             currentAbility = abilitys[Random.Range(0, abilitys.Count)];
             Debug.Log("Te toco la habilidad: " + currentAbility); // TODO: animacion del dado y tambien mostrar habilidad en pantalla
+        }
+    }
+
+    private void function()
+    {
+        for (int i = 0; i < unitPrefabs.Count; i++)
+        {
+            Instantiate(unitPrefabs[i]);
         }
     }
 }
