@@ -25,7 +25,7 @@ public class PlayerUnitManager : UnitManager
     }
 
     // usar este tipo de logica de ahora en adelante
-    public void CheckFotNextAction()
+    public void CheckForNextAction()
     {
         Node selectNode = GridManager.Instance.GetNodeAtMousePos(false);
         List<Node> aroundNodes = GetaroundNodes();

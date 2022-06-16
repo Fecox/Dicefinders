@@ -34,7 +34,7 @@ public class GridManager : Singleton<GridManager>
                 if(Board.HasTile(boardPos))
                 {
                     Vector3 pos = Board.CellToWorld(boardPos);
-                    Node node = new Node(nodes.Count, pos);
+                    Node node = new Node(nodes.Count, pos, boardPos);
                     nodes.Add(node);
                 }
             }
