@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Warrior : Unit
+public class FrostMage : Unit
 {
     [Header("Stats")]
-    [SerializeField] private int health = 16;
+    [SerializeField] private int health = 10;
     [SerializeField] private int defence = 0;
 
 

@@ -7,14 +7,14 @@ public class GridManager : Singleton<GridManager>
 {
     public Tilemap Board;
 
-    private const float MAX_DISTANCE = 10.5f;
+    [SerializeField] private const float MAX_DISTANCE = 10.01f;
 
     private int totalRows = 8;
     private int totalColumns;
     private int playerSpawnZone = 2;
     private int IaSpawnZone = 6;
 
-    private List<Node> nodes = new List<Node>();
+    public List<Node> nodes = new List<Node>(); // esto tiene que ser privado ahora lo hago publico para probar lo mas probable que tengamos que hacer un grid aparte para el path
 
     public new void Awake()
     {
@@ -34,7 +34,7 @@ public class GridManager : Singleton<GridManager>
                 if(Board.HasTile(boardPos))
                 {
                     Vector3 pos = Board.CellToWorld(boardPos);
-                    Node node = new Node(nodes.Count, pos);
+                    Node node = new Node(nodes.Count, pos, boardPos);
                     nodes.Add(node);
                 }
             }
@@ -87,7 +87,7 @@ public class GridManager : Singleton<GridManager>
         return row;
     }
 
-    private int GetIndexAtCoordinates(int x, int y)
+    public int GetIndexAtCoordinates(int x, int y) // por ahora es publica capas paso lo otro para aca y la hago privada de nuevo
     {
         return y + totalRows * x;
     }
@@ -108,7 +108,7 @@ public class GridManager : Singleton<GridManager>
         return node;
     }
 
-    public Node GetNodeAtPosition(Vector3 position, int rows)
+    public Node GetNodeAtPosition(Vector3 position, int rows) // despues de pasar el codigo para aca hacerla privada
     {
 
         int column = GetColumnAtPosition(position);
@@ -130,6 +130,7 @@ public class GridManager : Singleton<GridManager>
         return nodes;
     }
 
+    // si no va a ser necesario estos geters borrarlos los dejo por si se necesitan usar en un futuro
     public Node GetTopNode(Node currentNode)
     {
         int maxColumnValue = totalRows * (GetColumnByIndex(currentNode.Index) + 1);
@@ -192,21 +193,5 @@ public class GridManager : Singleton<GridManager>
             }
         }
         return randomNodes[Random.Range(0, randomNodes.Count)];
-    }
-
-    public Node GetNodeAtDirection(Directions direction, Node currentNode)
-    {
-        switch (direction)
-        {
-            case Directions.RIGHT:
-                return GetRightNode(currentNode);
-            case Directions.LEFT:
-                return GetLeftNode(currentNode);
-            case Directions.BOTTOM:
-                return GetBotNode(currentNode);
-            case Directions.TOP:
-                return GetTopNode(currentNode);
-            default: return null;
-        }
     }
 }

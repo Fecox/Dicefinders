@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Warrior : Unit
+public class Ranger : Unit
 {
     [Header("Stats")]
-    [SerializeField] private int health = 16;
+    [SerializeField] private int health = 14;
     [SerializeField] private int defence = 0;
 
 
