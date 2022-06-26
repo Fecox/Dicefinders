@@ -11,34 +11,13 @@ public class Unit : MonoBehaviour
 
     private Unit prefab; 
 
-    private List<Node> aroundNodes = new List<Node>();
-
-    private Directions[] directions = { Directions.RIGHT, Directions.LEFT, Directions.BOTTOM, Directions.TOP };
-
     public virtual void Spawn(Unit selectedPrefab, Node spawnNode)
     {
         prefab = selectedPrefab;
 
         ChangeCurrentNode(spawnNode);
 
-        GetAroundNodes();
-
         Node.IsOccupied = true;
-    }
-
-    // a la hora de hacer el feedback, habria que ver esto
-    public void GetPossibleMoves()
-    {
-        for (int i = 0; i < aroundNodes.Count; i++)
-        {
-            GameObject highLight = Instantiate(FeedBackManager.Instance.PrefabHighLight);
-            highLight.transform.position = aroundNodes[i].Position;
-        }
-    }
-
-    public List<Node> GetaroundNodes()
-    {
-        return aroundNodes;
     }
 
     public void SetMovementSteps()
@@ -50,7 +29,6 @@ public class Unit : MonoBehaviour
     {
         FeedBackManager.Instance.Reset();
         ChangeCurrentNode(selectedNode);
-        GetAroundNodes();
         TakeMovementSteps();
         transform.position = selectedNode.Position;
     }
@@ -61,31 +39,8 @@ public class Unit : MonoBehaviour
         transform.position = Node.Position;
     }
 
-    private void GetAroundNodes()
-    {
-        aroundNodes.Clear();
-
-    	foreach (Directions direction in directions)
-        {
-            Node node = GridManager.Instance.GetNodeAtDirection(direction, Node);
-
-            if (node != null)
-            {
-                aroundNodes.Add(node);
-            }  
-        }
-    }
-
     private void TakeMovementSteps()
     {
         MovementSteps--;
     }
-}
-
-public enum Directions
-{
-    RIGHT = 0,
-    LEFT = 1,
-    BOTTOM = 2,
-    TOP = 3
 }

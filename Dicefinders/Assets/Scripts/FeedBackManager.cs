@@ -1,37 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class FeedBackManager : Singleton<FeedBackManager>
 {
-    public GameObject PrefabHighLight;
+    [SerializeField] private Tilemap feedBackTileMap;
+    [SerializeField] private Tile feedBackTile;
 
-    private GameObject parentHighLight;
-
-    public new void Awake()
+    public void ShowPossibleMoves(List<Node> heatMapNodes)
     {
-        base.Awake();
-
-        parentHighLight = new GameObject("Possible Movements"); // esto es hot fix
-    }
-
-    // todo esto tambien es hot fix, deberiamos usar un tilemap que este hoveriado y se muestre solo cuando se pueda hacer el movimiento, tambien ver si mostramos el moviiento completo o no, preguntar a cacho, movimiento en idagonal tambien
-    public void ShowPossibleMoves(PlayerUnitManager playerUnit)
-    {
-        List<Node> aroundNodes = playerUnit.GetaroundNodes();
-
-        for (int i = 0; i < aroundNodes.Count; i++)
+        // despues de pasar heatmap a gridmanager no pedir parametro solo llamar desde aca el gridmanager.get
+        for (int i = 0; i < heatMapNodes.Count; i++)
         {
-            GameObject highLight = Instantiate(PrefabHighLight, aroundNodes[i].Position, Quaternion.identity, parentHighLight.transform);
+            feedBackTileMap.SetTile(heatMapNodes[i].Boardpos, feedBackTile);
         }
     }
 
     public void Reset()
     {
-        for (int i = 0; i < parentHighLight.transform.childCount; i++)
-        {
-            Destroy(parentHighLight.transform.GetChild(i).gameObject); 
-        }
+        feedBackTileMap.ClearAllTiles();
     }
-
 }

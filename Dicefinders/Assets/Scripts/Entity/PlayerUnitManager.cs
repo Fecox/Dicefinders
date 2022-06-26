@@ -4,21 +4,6 @@ using UnityEngine;
 
 public class PlayerUnitManager : UnitManager
 {
-    public bool IsValidMove()
-    {
-        Node selectNode = GridManager.Instance.GetNodeAtMousePos(false);
-        List<Node> aroundNodes = GetaroundNodes();
-        
-        for (int i = 0; i < aroundNodes.Count; i++)
-        {
-            if (selectNode.Index == aroundNodes[i].Index)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void MakeMove()
     {
 
@@ -28,7 +13,7 @@ public class PlayerUnitManager : UnitManager
     public void CheckForNextAction()
     {
         Node selectNode = GridManager.Instance.GetNodeAtMousePos(false);
-        List<Node> aroundNodes = GetaroundNodes();
+        List<Node> aroundNodes = new List<Node>(); // por ahora 
         
         for (int i = 0; i < aroundNodes.Count; i++)
         {
